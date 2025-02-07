@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Engagement Platform</title>
+
+    <script>
+        function showChatbox(type) {
+            const chatbox = document.querySelector('.chatbox');
+            chatbox.style.display = 'block';
+        }
+        function showMoodCheck() {
+            const moodCheck = document.querySelector('.mood-check');
+            moodCheck.style.display = 'block';
+        }
+        function handleMoodSelection(mood) {
+            let response = "";
+            switch (mood) {
+                case 'Feeling Great':
+                    response = "Glad to hear you're feeling great! Would you like to continue the conversation or connect with a mentor?";
+                    break;
+                case 'Doing Okay':
+                    response = "It's okay to have a regular day. Would you like to share more or talk to a mentor?";
+                    break;
+                case 'Struggling a Bit':
+                    response = "I'm here for you. Would you like to talk more or connect with someone who can help?";
+                    break;
+                case 'Feeling Overwhelmed':
+                    response = "It’s okay to feel overwhelmed sometimes. Would you prefer to continue with me or connect to a mentor?";
+                    break;
+            }
+            setTimeout(() => alert(response), 500);
+        }
+        function handleChatInput() {
+            const input = document.querySelector('.chatbox textarea').value.toLowerCase().trim();
+            
+            if (input === "") {
+                alert("Please enter a message.");
+                return;
+            }
+        
+            if (input.includes('faq')) {
+                alert('This is an FAQ response from AI.');
+            } else {
+                alert('Your inquiry has been sent to the respective department.');
+            }
+        }
+        
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Community Engagement Platform</h1>
+    </header>
+    <nav>
+        <div class="dropdown">
+            <a href="#">Events</a>
+            <div class="dropdown-content">
+                <a href="#">Academics</a>
+                <a href="#">Sports</a>
+                <a href="#">Culturals</a>
+                <a href="#">Gatherings</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#">Interaction Panel</a>
+            <div class="dropdown-content">
+                <a href="#" onclick="showChatbox('simpleChat')">Chatbot</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#">Anonymous Interaction</a>
+            <div class="dropdown-content">
+                <a href="#">Advice Forum</a>
+                <a href="#">Perspective Hub</a>
+                <a href="#" onclick="showMoodCheck()">Chat</a>
+            </div>
+        </div>
+    </nav>
+    <div class="chatbox">
+        <h2>Chatbot</h2>
+        <textarea placeholder="Type your message here..."></textarea>
+        <button onclick="handleChatInput()">Send</button>
+        <div class="mood-check" style="display: none;">
+            <h3>How are you feeling today?</h3>
+            <button onclick="handleMoodSelection('Feeling Great')">😊 Feeling Great</button>
+            <button onclick="handleMoodSelection('Doing Okay')">😐 Doing Okay</button>
+            <button onclick="handleMoodSelection('Struggling a Bit')">😕 Struggling a Bit</button>
+            <button onclick="handleMoodSelection('Feeling Overwhelmed')">😫 Feeling Overwhelmed</button>
+        </div>
+    </div>
+</body>
+</html>
